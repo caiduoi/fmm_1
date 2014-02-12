@@ -1,0 +1,36 @@
+<h3>Team detail</h3>
+<h5>Team ID :<%= @team.id%></h5>
+<h5>Team name : <%= @team.name%></h5>
+<h5>Team description : <%= @team.description%></h5>
+<h5>Team member : </h5>
+
+<% if @team.users.respond_to? :each %>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Leader</th>
+    </tr>
+    </thead>
+    <% @team.users.each do |member| %>
+      <tbody>
+        <tr>
+          <td><%= member.id %></td>
+          <td><%= member.name %></td>
+          <% if(member.leader_flag == 1) %>
+          	<td>Leader</td>
+          <% else %>
+          	<td>Member</td>
+          <% end %>
+          
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+<% end %>
+
+<td class="form-actions"><%= link_to 'Edit', edit_admin_team_path(@team),class: "btn btn-large btn-primary" ,
+                                   method: :get %></td>
+<td class="form-actions"><%= link_to 'Delete', admin_team_path(@team),class: "btn btn-large btn-primary",
+                                   method: :delete, data: { confirm: "Are you sure?"}, title: @team.name %></td>

@@ -1,0 +1,73 @@
+<h1>Edit team : <%= @team.name %></h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @team, as: :team, url: admin_team_path do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <p> Name </p>
+      <%= f.text_field :name %>
+
+      <p> Description </p>
+      <%= f.text_area :description %>
+
+      <% if @team.users.any? %>
+        <h3>Remove member</h3>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Select Members</th>
+            <th>Select Leader</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Profile</th>
+            <th>Leader</th>
+          </tr>
+          </thead>
+          <% @team.users.each do |user| %>
+              <tbody>
+              <tr>
+                <td><%= check_box_tag "user_remove_ids[]", user.id %></td>
+                <td><%= radio_button_tag :leader_id, user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.profile %></td>
+                <% if(user.leader_flag == 1) %>
+                  <td>Leader</td>
+                <% else %>
+                  <td>Member</td>
+                <% end %>
+              </tr>
+              </tbody>
+          <% end %>
+        </table>
+        <%= will_paginate @free_users %>
+      <% end %>
+
+      <% if @free_users.any? %>
+        <h3>Add new member</h3>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Select Members</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Profile</th>
+          </tr>
+          </thead>
+          <% @free_users.each do |user| %>
+              <tbody>
+              <tr>
+                <td><%= check_box_tag "user_add_ids[]", user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.profile %></td>
+              </tr>
+              </tbody>
+          <% end %>
+        </table>
+        <%= will_paginate @free_users %>
+      <% end %>
+      <%= f.submit "+ Edit team", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
