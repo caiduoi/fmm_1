@@ -1,0 +1,13 @@
+<h2>Edit skill : <%= @skill.name %></h2>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@skill) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <p> Name </p>
+      <%= f.text_field :name %>
+      
+      <%= f.submit "+ Edit skill", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
