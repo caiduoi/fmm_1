@@ -1,0 +1,32 @@
+<% provide(:title, 'Position list') %>
+<h1>Position list</h1>
+
+<%= link_to '+ Add Position', new_admin_position_path, 
+							  class: "btn btn-medium btn-primary"%></td>
+
+<table class="table table-striped">
+
+  <thead>
+    <tr>
+      <th>Position ID</th>
+      <th>Position Name</th>
+      <th>Position Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @positions.each do |position| %>
+    <tr>
+      <td><%= position.id %></td>
+      <td><%= link_to position.name, admin_position_path(position) %></td>
+      <td><%= position.abbreviation %></td>
+      <td><%= link_to "Edit", edit_admin_position_path(position) %></td>
+      <td><%= link_to "Delete", admin_position_path(position), method: :delete,
+              data: { confirm: "You sure?" }, title: position.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+<%= will_paginate %>

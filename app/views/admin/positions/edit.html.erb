@@ -1,0 +1,18 @@
+<% provide(:title, 'Update Position') %>
+<h1>Update Position</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for [:admin, @position] do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <p> Name </p>
+      <%= f.text_field :name %>
+
+      <p> Description </p>
+      <%= f.text_field :abbreviation %>
+      
+      <%= f.submit "Update Position", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
