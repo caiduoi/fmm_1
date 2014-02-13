@@ -1,0 +1,44 @@
+<div class="row well span10">
+  <b>Enter the user's information and submitting your account:</b>
+  <%= form_for [:admin, @user] do |f|  %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="row span4">
+        <div class="control-group">
+         <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="control-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: "form-control", type: "email" %>
+        </div>
+        <div class="control-group">
+          <%= f.label :birth_date %>
+          <%= f.text_field :birth_date,value:  (f.object.birth_date.strftime('%d/%m/%Y') if f.object.birth_date),
+                           size: "50", class: "datepicker form-control"%>
+        </div>
+        <%= f.submit "New user", class: " controls btn btn btn-success" %>
+
+      </div>
+      <div class="row span5">
+        <div class="control-group">
+          <%= f.label :password %>
+          <%= f.password_field :password , class: "form-control"%>
+        </div>
+        <div class="control-group">
+          <%= f.label :password_confirmation, "Confirm Password"%>
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
+        <div class="control-group">
+          <%= f.label :profile%>
+          <%= f.text_area :profile, class: "form-control" %>
+        </div>
+
+        <div class="btn-group" data-toggle="buttons-radio" >
+          <%= f.radio_button :permission,2, id: "first", style: "display:none;" %>
+          <label for="first" class="btn btn-info">Admin</label>
+          <%= f.radio_button :permission,1, id: "second", style: "display:none;" %>
+          <label for="second" class="btn btn-danger">Member</label>
+        </div>
+      </div>
+  <% end %>
+</div>

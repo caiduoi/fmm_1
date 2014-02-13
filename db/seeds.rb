@@ -10,6 +10,10 @@ users_list.each do |user|
   User.create(name: user[0], email: user[1], profile: user[2], birth_date: user[3], permission: user[4], password: user[5], password_confirmation: user[6])
 end
 
+users_list.each do |user|
+  User.create(name: user[0], email: user[1], profile: user[2], birth_date: user[3], permission: user[4], password: user[5], password_confirmation: user[6])
+end
+
 position_list = [
                   ["Member", "Member"],
                   ["Team Leader", "Team Leader"],

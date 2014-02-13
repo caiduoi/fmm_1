@@ -1,0 +1,24 @@
+<% provide(:title, @user.name) %>
+<div class="row span6 offset3">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+
+  </aside>
+</div>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+        <%= f.label :name %>
+        <%= @user.name %>
+        <%= f.label :email %>
+        <%= @user.email%>
+        <%= f.label :profile%>
+        <%= @user.profile%>
+    <% end %>
+  </div>
+</div>
