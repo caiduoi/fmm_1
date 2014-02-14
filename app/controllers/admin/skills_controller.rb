@@ -1,5 +1,5 @@
-class SkillsController < ApplicationController
-  def index
+class Admin::SkillsController < ApplicationController
+	def index
     @skills = Skill.all
     @skill = Skill.new
   end
@@ -12,7 +12,7 @@ class SkillsController < ApplicationController
     else
       flash[:notice] = "Destroy Failed"
     end
-    redirect_to skills_path
+    redirect_to admin_skills_path
   end
 
   def edit
@@ -20,13 +20,13 @@ class SkillsController < ApplicationController
   end
 
   def create
-    @skill = Skill.create skill_params
+    @skill = Skill.new skill_params
     if @skill.save
       flash.now[:success] = "Created skill"
-      redirect_to skills_path
+      redirect_to admin_skills_path
     else
       flash.now[:error] = "Failed create"
-      redirect_to skills_path
+      redirect_to admin_skills_path
     end
   end
 
@@ -35,7 +35,7 @@ class SkillsController < ApplicationController
     if !@skill.nil?
       if @skill.update_attributes skill_params
         flash.now[:success] = "Updated skill"
-        redirect_to skills_path
+        redirect_to admin_skills_path
       else
         render :edit
       end

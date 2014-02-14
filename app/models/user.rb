@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, if: :validate_password
   scope :admins, -> { where(permission: 2)}
   scope :members, -> { where(permission: 1)}
+  scope :free_users, -> { where(team_id: nil)}
+  belongs_to :team
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

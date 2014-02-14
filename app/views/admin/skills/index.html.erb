@@ -14,9 +14,9 @@
         <tr>
           <td><%= skill.id %></td>
           <td><%= skill.name %></td>
-          <td class="form-actions"><%= link_to 'Edit', edit_skill_path(skill),class: "btn btn-mini btn-danger",
+          <td class="form-actions"><%= link_to 'Edit', edit_admin_skill_path(skill),class: "btn btn-mini btn-danger",
                                    method: :get %></td>
-          <td class="form-actions"><%= link_to 'Delete', skill_path(skill),class: "btn btn-mini btn-danger",
+          <td class="form-actions"><%= link_to 'Delete', admin_skill_path(skill),class: "btn btn-mini btn-danger",
                                    method: :delete, data: { confirm: "Are you sure?"}, title: skill.name %></td>
         </tr>
       </tbody>
@@ -26,7 +26,7 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@skill) do |f| %>
+    <%= form_for [:admin, @skill] do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
       <p> Name </p>
