@@ -44,3 +44,31 @@ position_list.each do |position|
   Position.create(name: position[0], abbreviation: position[1] )
 end
 
+project_list = [
+                ["Framgia Training Management", "FTM", 
+                  DateTime.strptime("13/11/2012", "%d/%m/%Y"),
+                  DateTime.strptime("20/01/2013", "%d/%m/%Y"), 1],
+                ["Framgia Test Management", "FTS", 
+                  DateTime.strptime("20/01/2013", "%d/%m/%Y"),
+                  DateTime.strptime("20/02/2013", "%d/%m/%Y"), 2],
+                ["Framgia Member Management", "FMM",
+                  DateTime.strptime("20/02/2013", "%d/%m/%Y"),
+                  DateTime.strptime("20/03/2013", "%d/%m/%Y"), 1],
+               ]
+
+project_list.each do |project|
+  Project.create(name: project[0], abbreviation: project[1],
+                startdate: project[2], enddate: project[3], team_id: project[4])
+end
+
+user_position_in_project_list = [
+                                  [1, 1, 2],
+                                  [2, 3, 2],
+                                  [3, 1, 1]
+                                ]
+
+user_position_in_project_list.each do |upip|
+  UserPositionInProject.create(user_id: upip[0], position_id: upip[0], 
+                              project_id: upip[0])
+end
+

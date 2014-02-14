@@ -1,0 +1,46 @@
+<% provide(:title, @project.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1> Subject: <%= @project.name %> </h1>
+      <p> Abbreviation: <%= @project.abbreviation %></p>
+      <p> Start Date: <%= @project.startdate.day %>/
+      	<%= @project.startdate.month %>/ <%= @project.startdate.year %></p>
+      <p> End Date: <%= @project.enddate.day %>/ <%= @project.enddate.month %>/
+      	<%= @project.enddate.year %></p>
+      <%= link_to "Edit", edit_admin_project_path(@project) %>  
+    </section>
+  </aside>
+  
+  <div class="span8">
+	<% if @users.any? %>
+	    <h3>Members</h3>
+	    <table class="table table-striped table-bordered">
+	      <thead>
+	      <tr>
+	      	<th>ID</th>
+	      	<th>Name</th>
+	      	<th>Email</th>
+	      	<th>Birthday</th>
+	      	<th>Profile</th>
+	      </tr>
+	      </thead>
+	      <tbody>
+	      	<% @users.each do |user| %>
+		      	<tr>
+					<td><%= user.id %></td>
+		    		<td><%= user.name %></td>
+		    		<td><%= user.email %></td>
+		    		<td><%= user.birth_date.day %> /
+		    			<%= user.birth_date.month %> /
+		    			<%= user.birth_date.year %>
+		    		</td>
+		    		<td><%= user.profile %></td>
+				</tr>
+		  	<% end %>
+	      </tbody>
+	    </table>
+	<% end %>
+  </div>
+</div>
+

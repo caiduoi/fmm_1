@@ -1,0 +1,36 @@
+<% provide(:title, 'Project list') %>
+<h1>Project list</h1>
+
+<%= link_to '+ Add Project', new_admin_project_path, 
+							 class: "btn btn-medium btn-primary"%></td>
+
+<table class="table table-striped">
+
+  <thead>
+    <tr>
+      <th>Project ID</th>
+      <th>Project Name</th>
+      <th>Project Abbreviation</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+    <tr>
+      <td><%= project.id %></td>
+      <td><%= link_to project.name, admin_project_path(project) %></td>
+      <td><%= project.abbreviation %></td>
+      <td><%= project.startdate.day %>/ <%= project.startdate.month %>/
+			<%= project.startdate.year %></td>
+      <td><%= project.enddate.day %>/ <%= project.enddate.month %>/
+			<%= project.enddate.year %></td>
+      <td><%= link_to "Edit", edit_admin_project_path(project) %></td>
+      <td><%= link_to "Delete", admin_project_path(project), method: :delete,
+              data: { confirm: "You sure?" }, title: project.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate %>
