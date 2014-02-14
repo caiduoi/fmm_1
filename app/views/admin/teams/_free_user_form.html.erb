@@ -1,0 +1,24 @@
+<% if @free_users.any? %>
+<h3>Add new member</h3>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Select Members</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Profile</th>
+  </tr>
+  </thead>
+  <% @free_users.each do |user| %>
+      <tbody>
+      <tr>
+        <td><%= check_box_tag "user_add_ids[]", user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.profile %></td>
+      </tr>
+      </tbody>
+  <% end %>
+</table>
+<%= will_paginate @free_users %>
+<% end %>

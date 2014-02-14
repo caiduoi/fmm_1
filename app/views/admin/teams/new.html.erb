@@ -1,5 +1,5 @@
 
-<%= form_for @team, as: :team, url: admin_teams_path do |f| %>
+<%= form_for [:admin, @team] do |f| %>
 
   <p> Name </p>
   <p><%= f.text_field :name %></p>
