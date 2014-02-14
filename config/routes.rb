@@ -10,6 +10,14 @@ Fmm1::Application.routes.draw do
     resources :projects do
       resources :user_position_in_projects
     end
+    resource :csvs do
+      collection do
+        post 'export_csv'
+        post 'import_csv'
+        post 'export_xml'
+        post 'import_xml'
+      end
+    end
   end
 
   resources :users, only: [:show, :update]
