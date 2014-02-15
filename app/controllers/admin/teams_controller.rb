@@ -27,7 +27,14 @@ class Admin::TeamsController < ApplicationController
 
   def edit
     @team = Team.find params[:id]
-    @free_users = User.free_users.paginate page: params[:page], per_page: 5 
+    @free_users = []
+    if params[:type] == "get_free_member"
+      @free_users = User.free_users.paginate page: params[:page], per_page: 5 
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
   end
 
   def new

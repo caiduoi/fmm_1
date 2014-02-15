@@ -1,7 +1,7 @@
 <h1>Edit team : <%= @team.name %></h1>
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for @team, as: :team, url: admin_team_path do |f| %>
+    <%= form_for [:admin, @team] do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
       <p> Name </p>
@@ -40,34 +40,23 @@
               </tbody>
           <% end %>
         </table>
-        <%= will_paginate @free_users %>
       <% end %>
 
-      <% if @free_users.any? %>
-        <h3>Add new member</h3>
-        <table class="table table-hover">
-          <thead>
-          <tr>
-            <th>Select Members</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Profile</th>
-          </tr>
-          </thead>
-          <% @free_users.each do |user| %>
-              <tbody>
-              <tr>
-                <td><%= check_box_tag "user_add_ids[]", user.id %></td>
-                <td><%= user.name %></td>
-                <td><%= user.email %></td>
-                <td><%= user.profile %></td>
-              </tr>
-              </tbody>
-          <% end %>
-        </table>
-        <%= will_paginate @free_users %>
-      <% end %>
-      <%= f.submit "+ Edit team", class: "btn btn-large btn-primary" %>
+      <h3><ol class = "add_new_user" id = "add_new_user"><%= link_to 'List free members', edit_admin_team_path(@team, :type => "get_free_member") %> </ol></h3>
+
+
+      <ol class = "free_user_list" id = "free_user_list">
+        <%= render 'free_user_form' %>
+      </ol>
+
+      <%= f.submit "Update", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $('ol[id="add_new_user"]').click(function() {
+      $('ol[id="free_user_list"]').show();
+    });
+  });
+</script>

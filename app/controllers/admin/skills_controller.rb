@@ -9,10 +9,14 @@ class Admin::SkillsController < ApplicationController
 
     if skill.destroy
       flash[:notice] = "Success destroyed"
+      @skills = Skill.all
     else
       flash[:notice] = "Destroy Failed"
     end
-    redirect_to admin_skills_path
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
@@ -23,10 +27,13 @@ class Admin::SkillsController < ApplicationController
     @skill = Skill.new skill_params
     if @skill.save
       flash.now[:success] = "Created skill"
-      redirect_to admin_skills_path
+      @skills = Skill.all
     else
       flash.now[:error] = "Failed create"
-      redirect_to admin_skills_path
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
