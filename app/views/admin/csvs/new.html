@@ -1,0 +1,51 @@
+<h3><ol class = "btn btn-large btn-primary" id = "new_export_csv">Export CSV</ol></h3>
+<h3><ol class = "btn btn-large btn-primary" id = "new_import_csv">Import CSV</ol></h3>
+<h3><ol class = "btn btn-large btn-primary" id = "new_export_xml">Export XML</ol></h3>
+<h3><ol class = "btn btn-large btn-primary" id = "new_import_xml">Import XML</ol></h3>
+<ol class = "export_csv" id = "export_csv">
+        <%= render 'export_csv' %>
+</ol>
+<ol class = "import_csv" id = "import_csv">
+        <%= render 'import_csv' %>
+</ol>
+<ol class = "export_xml" id = "export_xml">
+        <%= render 'export_xml' %>
+</ol>
+<ol class = "import_xml" id = "import_xml">
+        <%= render 'import_xml' %>
+</ol>
+
+<script>
+  $(document).ready(function() {
+    $('ol[id="export_csv"]').hide();
+    $('ol[id="import_csv"]').hide();
+    $('ol[id="export_xml"]').hide();
+    $('ol[id="import_xml"]').hide();
+
+    $('ol[id="new_export_csv"]').click(function() {
+      $('ol[id="export_csv"]').show();
+      $('ol[id="import_csv"]').hide();
+      $('ol[id="export_xml"]').hide();
+      $('ol[id="import_xml"]').hide();
+    });
+    $('ol[id="new_import_csv"]').click(function() {
+      $('ol[id="export_csv"]').hide();
+      $('ol[id="import_csv"]').show();
+      $('ol[id="export_xml"]').hide();
+      $('ol[id="import_xml"]').hide();
+    });
+    $('ol[id="new_export_xml"]').click(function() {
+      $('ol[id="export_csv"]').hide();
+      $('ol[id="import_csv"]').hide();
+      $('ol[id="export_xml"]').show();
+      $('ol[id="import_xml"]').hide();
+    });
+    $('ol[id="new_import_xml"]').click(function() {
+      $('ol[id="export_csv"]').hide();
+      $('ol[id="import_csv"]').hide();
+      $('ol[id="export_xml"]').hide();
+      $('ol[id="import_xml"]').show();
+    });
+  });
+</script>
+

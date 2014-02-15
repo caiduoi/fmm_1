@@ -9,6 +9,7 @@
           <li><%= link_to "About", about_path%></li>
           <li><%= link_to "Positions", admin_positions_path%></li>
           <li><%= link_to "Projects", admin_projects_path%></li>
+          <li><%= link_to "Import/Export", new_admin_csvs_path %></li>
           <% if signed_in? %>
             <% if admin_user? current_user %>
               <li><%= link_to "Admin", admin_users_path  %></li>

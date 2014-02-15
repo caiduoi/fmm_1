@@ -1,0 +1,5 @@
+<%= form_tag export_csv_admin_csvs_path do %>
+  <%= select_tag :table, options_for_select(ActiveRecord::Base.connection.tables) %>
+  
+  <%= submit_tag "Download", class: "btn btn-default" %>
+<% end %>
