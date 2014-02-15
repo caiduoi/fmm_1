@@ -3,8 +3,12 @@
 
 <div class="row">
   <div class="span10 offset2">
-	<%= form_for [:admin, @project] do |f| %>
+	<%= form_for @project, as: :project, url: admin_projects_path do |f| %>
 	   <%= render 'shared/error_messages', object: f.object %>
+
+	   <p> Team </p>
+	   <%= f.collection_select :team_id, Team.all, :id, :name, 
+	   									checked: @project.team_id %>
 
 	   <p> Name </p>
 	   <%= f.text_field :name %>
@@ -55,4 +59,3 @@
 	<% end %>
   </div>
 </div>
-

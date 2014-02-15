@@ -1,0 +1,17 @@
+
+  <%= f.fields_for :user_position_in_projects do |builder| %>
+  	<tr>
+	<div class="span4">
+		<td><%= builder.check_box :member %></td>
+		<td><%= builder.object.user.id %>
+			<%= builder.hidden_field :user_id, value: builder.object.user.id%>
+		</td>
+    	<td><%= builder.object.user.name %></td>
+    	<td><%= builder.object.user.email %></td>
+    	<td><%= builder.object.user.birth_date.day %> /
+    		<%= builder.object.user.birth_date.month %> /
+    		<%= builder.object.user.birth_date.year %>
+    	</td>
+    	<td><%= builder.object.user.profile %></td>
+	</tr>
+  <% end %>

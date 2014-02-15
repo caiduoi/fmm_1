@@ -4,9 +4,14 @@ class Admin::ProjectsController < ApplicationController
   
   def new
     @project = Project.new
-    @users = User.all
+    if !params[:team_id].nil?
+      @team = Team.find params[:team_id]
+      @users = User.team_members(@team.id)
+    else
+      @users = User.all  
+    end
     @users.each do |user|
-      @project.user_position_in_projects.build user_id: user.id
+        @project.user_position_in_projects.build user_id: user.id
     end
   end
   

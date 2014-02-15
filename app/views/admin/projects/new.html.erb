@@ -3,11 +3,11 @@
 
 <div class="row">
   <div class="span10 offset2">
-	<%= form_for [:admin, @project] do |f| %>
+	<%= form_for([:admin, @project]) do |f| %>
 	   <%= render 'shared/error_messages', object: f.object %>
 	   
 	   <p> Team </p>
-	   <%= f.collection_select :team_id, Team.all, :id, :name %>
+	   <%= f.collection_select :team_id, Team.all, :id, :name, selected: 0 %>
 	   
 	   <p> Name </p>
 	   <%= f.text_field :name %>
@@ -20,10 +20,9 @@
 	      
 	   <p> End Date </p>
 	   <%= f.date_select :enddate, order: [:month, :day, :year] %>
-	 
-	  <p> Project Member </p>
-	  <table class="table table-striped">
-
+	   
+	   <p> Project Member </p>
+	   <table id="team_members" class="table table-striped">
 		  <thead>
 		    <tr>
 		      <th>Member</th>
@@ -36,26 +35,30 @@
 		  </thead>
 		  
 		  <tbody>
-	      <%= f.fields_for :user_position_in_projects do |builder| %>
-	      	<tr>
-			<div class="span4">
-				<td><%= builder.check_box :member %></td>
-				<td><%= builder.object.user.id %>
-					<%= builder.hidden_field :user_id, value: builder.object.user.id%>
-				</td>
-		    	<td><%= builder.object.user.name %></td>
-		    	<td><%= builder.object.user.email %></td>
-		    	<td><%= builder.object.user.birth_date.day %> /
-		    		<%= builder.object.user.birth_date.month %> /
-		    		<%= builder.object.user.birth_date.year %>
-		    	</td>
-		    	<td><%= builder.object.user.profile %></td>
-			</tr>
-	      <% end %>
-		  </tbody>
+	   		<%= render "user", f: f %>
+	   	  </tbody>
 		</table>
+	   
 	  <%= f.submit "Create Project", class: "btn btn-large btn-primary" %>
 	<% end %>
   </div>
 </div>
+
+<script>
+	$(document).ready(function(){
+	  	$('#project_team_id').change(function(){
+	  		$.ajax({
+	  		  data: {
+	  		  	team_id: $(this).val()
+	  		  },
+	  		  type: "GET",
+	  		  url: "new",
+	  		  dataType: "html",
+	  		  success: function(data){
+		          $('#team_members').html( $( data ).find( '#team_members' ).html());
+		      }
+	  		});
+	  	});
+	});
+</script>
 

@@ -4,7 +4,9 @@ Fmm1::Application.routes.draw do
   resources :sessions,  only: [:new, :create, :destroy]
   namespace :admin do
     resources :users
-    resources :teams
+    resources :teams do
+      resources :members
+    end
     resources :skills
     resources :positions
     resources :projects do
